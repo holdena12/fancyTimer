@@ -68,6 +68,7 @@ let paused = 1
 <div class="center">
   <p class="text">Set number: {set}</p>
   <p class="text">PTimer</p>
+
 </div>
 <div class="center">
   <form on:submit|preventDefault={onStart}>
@@ -80,8 +81,8 @@ let paused = 1
 <p class="text" style="font-size: 30px;">{isWorking} {output}</p> 
 <button id="pause_btn" class="button hidden" on:click={function(){paused *= -1}}>Pause</button>
 
-<audio bind:this={workAudio} src="alert2.wav"></audio>
-<audio bind:this={restAudio} src="alert.wav"></audio>
+<audio bind:this={workAudio} src="alert2.mp3"></audio>
+<audio bind:this={restAudio} src="alert2.mp3"></audio>
 <style>
   .hidden{
     display: none;
