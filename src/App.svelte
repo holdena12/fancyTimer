@@ -13,13 +13,14 @@
   let isWorking = "";
   let workAudio;
   let restAudio;
-
+let paused = 1
   function startInterval() {
     clearInterval(interval);
     interval = setInterval(() => {
       if (timeIsGoing) {
         isWorking = "Working";
-        time += 0.01;
+        if(paused != -1)         time += 0.01;
+
         if (time >= setTime) {
           time = 0;
           restTimeIsGoing = true;
@@ -29,7 +30,8 @@
       }
       if (restTimeIsGoing) {
         isWorking = "Rest";
-        restTime += 0.01;
+        if(paused != -1)restTime += 0.01;
+          
         if (restTime >= setRest) {
           restTime = 0;
           restTimeIsGoing = false;
@@ -58,6 +60,8 @@
     timeIsGoing = true;
     restTimeIsGoing = false;
     startInterval();
+    document.getElementById("pause_btn").classList.remove('hidden')
+
   }
 </script>
 
@@ -73,7 +77,13 @@
     <button class="button">Submit</button>
   </form>
 </div>
-<p class="text" style="font-size: 30px;">{isWorking} {output}</p>
+<p class="text" style="font-size: 30px;">{isWorking} {output}</p> 
+<button id="pause_btn" class="button hidden" on:click={function(){paused *= -1}}>Pause</button>
 
 <audio bind:this={workAudio} src="alert2.wav"></audio>
 <audio bind:this={restAudio} src="alert.wav"></audio>
+<style>
+  .hidden{
+    display: none;
+  }
+</style>
