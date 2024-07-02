@@ -41,6 +41,11 @@ let paused = 1
             workAudio.play();
           } else {
             clearInterval(interval);
+            document.getElementById("input_div").classList.remove('hidden')
+            document.getElementById("numbers").classList.add('hidden')
+            document.getElementById("pause_btn").classList.add('hidden')
+
+
           }
         }
       }
@@ -61,6 +66,11 @@ let paused = 1
     restTimeIsGoing = false;
     startInterval();
     document.getElementById("pause_btn").classList.remove('hidden')
+    document.getElementById("input_div").classList.add('hidden')
+    document.getElementById("numbers").classList.remove('hidden')
+
+
+
 
   }
 </script>
@@ -70,7 +80,7 @@ let paused = 1
   <p class="text">PTimer</p>
 
 </div>
-<div class="center">
+<div  id="input_div" class="center">
   <form on:submit|preventDefault={onStart}>
     <input class="input" name="setNumber" placeholder="Number of sets" type="number">
     <input class="input"  name="setTime" placeholder="Time of each set" type="number" step="0.01">
@@ -78,7 +88,7 @@ let paused = 1
     <button class="button">Submit</button>
   </form>
 </div>
-<p class="text" style="font-size: 30px;">{isWorking} {output}</p> 
+<p id="numbers" class="text" style="font-size: 30px;">{isWorking} {output}</p> 
 <button id="pause_btn" class="button hidden" on:click={function(){paused *= -1}}>Pause</button>
 
 <audio bind:this={workAudio} src="alert2.mp3"></audio>
